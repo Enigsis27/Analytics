@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os" // For JPEG decoding
-	"time"
 	// For PNG decoding
 	"os/signal"
 	"strconv"
@@ -14,7 +13,7 @@ import (
 
 // Variables used for command line parameters
 var (
-	Token         = "NDE5NjY3MjM2MjUzNDY2NjM0.DXzdGg.gM2PsdElYzxOs8jPu8h0LiqcllQ"
+	Token         = "TOKEN"
 	Messages      = []Person{}
 	LengthOfArray int
 	MsgChannel    = []Channel{}
@@ -154,7 +153,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		Aux2, _ := s.GuildMembers(Aux.GuildID, "", 100)
 
 		for index := range Aux2 {
-			Aux3 := Aux2[index].Joined
+			Aux3 := Aux2[index].JoinedAt
 
 			s.ChannelMessageSend(m.ChannelID, Aux2[index].User.Username+"\n"+Aux2[index].User.Email+"\n"+Aux3)
 		}
