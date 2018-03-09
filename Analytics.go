@@ -19,9 +19,6 @@ var (
 	MsgChannel    = []Channel{}
 )
 
-//How the time will be show
-const longForm = "Jan 2, 2006 at 3:04pm (MST)"
-
 //Person is used for know the name and the NumberOfMessages of a person in the server
 type Person struct {
 	name        string
@@ -35,11 +32,6 @@ type Channel struct {
 	NumberOfMsg int
 	isChecked   bool
 	ID          string
-}
-
-//To take just the first value of return
-func slice(args ...interface{}) []interface{} {
-	return args
 }
 
 func main() {
@@ -158,18 +150,4 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(m.ChannelID, Aux2[index].User.Username+"\n"+Aux2[index].User.Email+"\n"+Aux3)
 		}
 	}
-
-	if m.Content == "Poder" {
-		Aux4, _ := s.Channel(m.ChannelID)
-		Aux5, _ := s.Guild(Aux4.GuildID)
-
-		Aux6, _ := Aux5.JoinedAt.Parse()
-
-		s.ChannelMessageSend(m.ChannelID, Aux6.Format("Mon Jan _2 15:04:05 2006"))
-	}
-
-	//for index, element := range someSlice {
-	// index is the index where we are
-	// element is the element from someSlice for where we are
-	//}
 }
