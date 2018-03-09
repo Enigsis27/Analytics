@@ -154,10 +154,9 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		Aux2, _ := s.GuildMembers(Aux.GuildID, "", 100)
 
 		for index := range Aux2 {
-			Aux3 := Aux2[index].JoinedAt
-			Aux4, _ := time.Parse(longForm, Aux3)
+			Aux3 := Aux2[index].Joined
 
-			s.ChannelMessageSend(m.ChannelID, Aux2[index].User.Username+"\n"+Aux2[index].User.Email+"\n"+Aux4.Format("Jan 2, 2006 at 3:04pm (MST)"))
+			s.ChannelMessageSend(m.ChannelID, Aux2[index].User.Username+"\n"+Aux2[index].User.Email+"\n"+Aux3)
 		}
 	}
 
